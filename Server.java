@@ -7,7 +7,7 @@ public class Server
   {
     String inFromClient;
     //String capitalizedSentence;
-    ServerSocket socket = new ServerSocket(6789);
+    ServerSocket socket = new ServerSocket(6790);
     Board b = new Board();
     
     while(true)

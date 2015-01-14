@@ -702,6 +702,11 @@ public class Checkers
     return b;
   }
   
+  public void SetBoard(Board board)
+  {
+    b = board;
+  }
+  
   public static void main(String args[])
   {
     Checkers c = new Checkers();
