@@ -614,7 +614,6 @@ public class Checkers
           RedTurn = false;
           ResetHighlight();
           MakeMove(x, y, row, col);
-          
         }else
         {
           if(x == row && y == col)
@@ -702,6 +701,11 @@ public class Checkers
   public Board GetBoard()
   {
     return b;
+  }
+  
+  public boolean isRedTurn()
+  {
+    return RedTurn;
   }
   
   public static void main(String args[])
