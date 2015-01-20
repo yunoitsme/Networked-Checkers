@@ -19,7 +19,7 @@ public class Server
       inFromClient = in.readLine();
       System.out.println("Received: " + inFromClient);
       b = DeCodeBoard(inFromClient);
-      b.FillBoard();
+      //b.FillBoard();
       
       //capitalizedSentence = clientSentence.toUpperCase() + '\n';
       out.writeBytes(b.toString() + '\n');
