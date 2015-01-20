@@ -614,7 +614,7 @@ public class Checkers
           RedTurn = false;
           ResetHighlight();
           MakeMove(x, y, row, col);
-          
+          CServer2.Send();
         }else
         {
           if(x == row && y == col)
@@ -638,7 +638,7 @@ public class Checkers
           RedTurn = true;
           ResetHighlight();
           MakeMove(x, y, row, col);
-          
+          CServer2.Send();
         }else
         {
           if(x == row && y == col)
