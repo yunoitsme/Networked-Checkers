@@ -13,8 +13,9 @@ public class Client
       Socket clientSocket = new Socket("localhost", 6790);
       DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
       BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-      sentence = JOptionPane.showInputDialog("what you gonna do?");
-      outToServer.writeBytes(sentence + '\n');
+      //sentence = JOptionPane.showInputDialog("what you gonna do?");
+      outToServer.writeBytes(/*sentence*/ "-1" + '\n');
+      Thread.sleep(1000);
       modifiedSentence = inFromServer.readLine();
       System.out.println("FROM SERVER: " + modifiedSentence);
       clientSocket.close();

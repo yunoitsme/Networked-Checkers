@@ -47,7 +47,7 @@ public class Server
         {
           if(g.GetCheckers().isRedTurn())
           {
-            //System.out.println(e.getPoint());
+            System.out.println(e.getPoint());
             col = (e.getX() / 10) / 10;
             row = ((e.getY() / 10) - 2) / 10;
             g.GetCheckers().Click(row, col);

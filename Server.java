@@ -45,6 +45,7 @@ public class Server
           }
         }else
         {
+          /*
           if(g.GetCheckers().isRedTurn())
           {
             System.out.println(e.getPoint());
@@ -53,7 +54,13 @@ public class Server
             g.GetCheckers().Click(row, col);
             //System.out.println(row);
             //System.out.println(col);
-          }
+          }*/
+          System.out.println(e.getPoint());
+          col = (e.getX() / 10) / 10;
+          row = ((e.getY() / 10) - 2) / 10;
+          g.GetCheckers().Click(row, col);
+          //System.out.println(row);
+          //System.out.println(col);
         }
       }
     }
@@ -61,13 +68,18 @@ public class Server
     
     while(true)
     {
+      frame.repaint();
       Socket connectionSocket = socket.accept();
       BufferedReader in = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
       DataOutputStream out = new DataOutputStream(connectionSocket.getOutputStream());
+      frame.repaint();
       
       inFromClient = in.readLine();
       System.out.println("Received: " + inFromClient);
+      frame.repaint();
       
+      frame.repaint();
+      /*
       if(g.GetCheckers().isRedTurn() == false)
       {
         if(inFromClient != "-1")
@@ -81,6 +93,8 @@ public class Server
           g.GetCheckers().Click(x, y);
         }
       }
+      */
+      frame.repaint();
       //b = DeCodeBoard(inFromClient);
       //b.FillBoard();
       
