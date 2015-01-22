@@ -41,20 +41,46 @@ public class Client
                            
     while(true)
     {
-      String sentence;
-      String modifiedSentence;
-      //Socket clientSocket = new Socket("localhost", 6790);
-      //DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-      //BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-      /////sentence = JOptionPane.showInputDialog("what you gonna do?");
-      //outToServer.writeBytes(/*sentence*/ "-1" + '\n');
+      String toServer;
+      String boardString = "";
+      Socket clientSocket = new Socket("localhost", 6790);
+      DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
+      BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+      /////toServer = JOptionPane.showInputDialog("what you gonna do?");
+      outToServer.writeBytes(/*sentence*/ "-1" + '\n');
       Thread.sleep(1000);
-      //modifiedSentence = inFromServer.readLine();
-      //System.out.println("FROM SERVER: " + modifiedSentence);
+      boardString = inFromServer.readLine();
+      
+      g.SetBoard(DeCodeBoard(boardString));
+      frame.repaint();
+      //System.out.println("FROM SERVER: " + boardString);
+      if(boardString == "1")
+      {
+        
+      }
+      if(boardString == "-1")
+      {
+        
+      }
       //clientSocket.close();
       System.out.print(c.GetRow() + " ");
       System.out.println(c.GetCol());
     }
+  }
+  
+  public static Board DeCodeBoard(String s)
+  {
+    int z = 0;
+    Board b = new Board();
+    for(int x = 0; x < 8; x++)
+    {
+      for(int y = 0; y < 8; y++)
+      {
+        b.Put(x, y, Integer.parseInt(s.charAt(z) + ""));
+        z++;
+      }
+    }
+    return b;
   }
 }
 

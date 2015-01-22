@@ -68,17 +68,13 @@ public class Server
     
     while(true)
     {
-      frame.repaint();
       Socket connectionSocket = socket.accept();
       BufferedReader in = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
       DataOutputStream out = new DataOutputStream(connectionSocket.getOutputStream());
-      frame.repaint();
       
       inFromClient = in.readLine();
       System.out.println("Received: " + inFromClient);
-      frame.repaint();
-      
-      frame.repaint();
+
       /*
       if(g.GetCheckers().isRedTurn() == false)
       {
@@ -94,7 +90,7 @@ public class Server
         }
       }
       */
-      frame.repaint();
+      
       //b = DeCodeBoard(inFromClient);
       //b.FillBoard();
       
