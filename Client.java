@@ -14,13 +14,14 @@ import javax.swing.*;
 public class Client
 {
   static coord c = new coord();
+  static GBoard g = new GBoard();
   
   public static void main(String args[]) throws Exception
   {
-    int row; 
-    int col;
+    //int row = 0; 
+    //int col = 0;
+    //boolean canClick = false;
     
-    GBoard g = new GBoard();
     JFrame frame = new JFrame("Checkers");
     
     frame.add(g);
@@ -47,22 +48,54 @@ public class Client
       DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
       BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
       /////toServer = JOptionPane.showInputDialog("what you gonna do?");
-      outToServer.writeBytes(/*sentence*/ "-1" + '\n');
-      Thread.sleep(1000);
+      /*
+      if(canClick == false)
+      {
+        outToServer.writeBytes(/*sentence "-1" + '\n');
+      }else
+      {
+        outToServer.writeBytes(c.GetRow() + "" + c.GetCol() + '\n');
+      }
+      */
+      
+      //JOptionPane.showMessageDialog(null, "it works");
+      
+      //outToServer.writeBytes(c.GetRow() + "" + c.GetCol() + '\n');
+      
+      if(c.GetRow() == -1 && c.GetCol() == -1)
+      {
+        outToServer.writeBytes(/*sentence*/ "1" + '\n');
+      }else
+      {
+        outToServer.writeBytes(c.GetRow() + "" + c.GetCol() + '\n');
+        c.Reset();
+      }
+      
       boardString = inFromServer.readLine();
+      Thread.sleep(1000);
+      
+      /*
+      if(boardString != "1" && boardString != "-1")
+      {
+        g.SetBoard(DeCodeBoard(boardString));
+      }
+      */
       
       g.SetBoard(DeCodeBoard(boardString));
       frame.repaint();
+      
       //System.out.println("FROM SERVER: " + boardString);
+      /*
       if(boardString == "1")
       {
-        
+        canClick = true;
       }
       if(boardString == "-1")
       {
-        
+        canClick = false;
       }
-      //clientSocket.close();
+      */
+      clientSocket.close();
       System.out.print(c.GetRow() + " ");
       System.out.println(c.GetCol());
     }
@@ -86,8 +119,8 @@ public class Client
 
 class coord
 {
-  int row;
-  int col;
+  int row = -1;
+  int col = -1;
   
   public void Set(int r, int c)
   {
@@ -103,5 +136,11 @@ class coord
   public int GetCol()
   {
     return col;
+  }
+  
+  public void Reset()
+  {
+    row = -1;
+    col = -1;
   }
 }

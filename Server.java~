@@ -22,6 +22,8 @@ public class Server
     //boolean isTurn = true;
     String row;
     String col;
+    boolean sentStart = false;
+    boolean sentStop = false;
     
     frame.add(g);
     frame.setSize(801, 823);
@@ -45,6 +47,7 @@ public class Server
           }
         }else
         {
+          
           if(g.GetCheckers().isRedTurn())
           {
             System.out.println(e.getPoint());
@@ -54,6 +57,14 @@ public class Server
             //System.out.println(row);
             //System.out.println(col);
           }
+          /*
+          System.out.println(e.getPoint());
+          col = (e.getX() / 10) / 10;
+          row = ((e.getY() / 10) - 2) / 10;
+          g.GetCheckers().Click(row, col);
+          //System.out.println(row);
+          //System.out.println(col);
+          */
         }
       }
     }
@@ -67,10 +78,11 @@ public class Server
       
       inFromClient = in.readLine();
       System.out.println("Received: " + inFromClient);
+
       
       if(g.GetCheckers().isRedTurn() == false)
       {
-        if(inFromClient != "-1")
+        if(inFromClient != "1")
         {
           row = inFromClient.charAt(0) + "";
           col = inFromClient.charAt(0) + "";
@@ -81,12 +93,31 @@ public class Server
           g.GetCheckers().Click(x, y);
         }
       }
+      
+      
       //b = DeCodeBoard(inFromClient);
       //b.FillBoard();
       
-      //capitalizedSentence = clientSentence.toUpperCase() + '\n';
+      /*
+      if(g.GetCheckers().isRedTurn() == false && sentStart == false)
+      {
+        out.writeBytes( "1" + '\n');
+        sentStart = true;
+        sentStop = false;
+        System.out.println("sent: 1");
+      }
+      if(g.GetCheckers().isRedTurn() && sentStop == false)
+      {
+        out.writeBytes( "-1" + '\n');
+        sentStop = true;
+        sentStart = false;
+        System.out.println("sent: -1");
+      }
+      */
+      
       out.writeBytes(g.GetCheckers().GetBoard().toString() + '\n');
       
+      //sent = false;
       frame.repaint();
     }
   }

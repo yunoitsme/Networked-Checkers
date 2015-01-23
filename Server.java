@@ -45,7 +45,7 @@ public class Server
           }
         }else
         {
-          /*
+          
           if(g.GetCheckers().isRedTurn())
           {
             System.out.println(e.getPoint());
@@ -54,13 +54,14 @@ public class Server
             g.GetCheckers().Click(row, col);
             //System.out.println(row);
             //System.out.println(col);
-          }*/
+          }
+          /*
           System.out.println(e.getPoint());
           col = (e.getX() / 10) / 10;
           row = ((e.getY() / 10) - 2) / 10;
           g.GetCheckers().Click(row, col);
           //System.out.println(row);
-          //System.out.println(col);
+          //System.out.println(col);*/
         }
       }
     }
@@ -75,21 +76,24 @@ public class Server
       inFromClient = in.readLine();
       System.out.println("Received: " + inFromClient);
 
-      /*
+      
       if(g.GetCheckers().isRedTurn() == false)
       {
-        if(inFromClient != "-1")
+        System.out.println("good");
+        
+        if(inFromClient.equals("-1") == false)
         {
+          System.out.println("bad");
           row = inFromClient.charAt(0) + "";
           col = inFromClient.charAt(0) + "";
-        
+         
           int x = Integer.parseInt(row);
           int y = Integer.parseInt(col);
         
           g.GetCheckers().Click(x, y);
         }
       }
-      */
+      
       
       //b = DeCodeBoard(inFromClient);
       //b.FillBoard();
