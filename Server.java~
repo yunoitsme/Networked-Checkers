@@ -22,8 +22,6 @@ public class Server
     //boolean isTurn = true;
     String row;
     String col;
-    boolean sentStart = false;
-    boolean sentStop = false;
     
     frame.add(g);
     frame.setSize(801, 823);
@@ -63,8 +61,7 @@ public class Server
           row = ((e.getY() / 10) - 2) / 10;
           g.GetCheckers().Click(row, col);
           //System.out.println(row);
-          //System.out.println(col);
-          */
+          //System.out.println(col);*/
         }
       }
     }
@@ -82,14 +79,18 @@ public class Server
       
       if(g.GetCheckers().isRedTurn() == false)
       {
-        if(inFromClient != "1")
-        {
-          row = inFromClient.charAt(0) + "";
-          col = inFromClient.charAt(0) + "";
+        //System.out.println("good");
         
+        if(inFromClient.equals("1") == false)
+        {
+          //System.out.println("bad");
+          row = inFromClient.charAt(0) + "";
+          col = inFromClient.charAt(1) + "";
+          
           int x = Integer.parseInt(row);
           int y = Integer.parseInt(col);
-        
+          System.out.println(x + "," + y);
+          
           g.GetCheckers().Click(x, y);
         }
       }
@@ -98,26 +99,9 @@ public class Server
       //b = DeCodeBoard(inFromClient);
       //b.FillBoard();
       
-      /*
-      if(g.GetCheckers().isRedTurn() == false && sentStart == false)
-      {
-        out.writeBytes( "1" + '\n');
-        sentStart = true;
-        sentStop = false;
-        System.out.println("sent: 1");
-      }
-      if(g.GetCheckers().isRedTurn() && sentStop == false)
-      {
-        out.writeBytes( "-1" + '\n');
-        sentStop = true;
-        sentStart = false;
-        System.out.println("sent: -1");
-      }
-      */
-      
+      //capitalizedSentence = clientSentence.toUpperCase() + '\n';
       out.writeBytes(g.GetCheckers().GetBoard().toString() + '\n');
       
-      //sent = false;
       frame.repaint();
     }
   }

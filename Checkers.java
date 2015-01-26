@@ -711,21 +711,22 @@ public class Checkers
   public static void main(String args[])
   {
     Checkers c = new Checkers();
-    c.PrintBoard();
-    c.MakeMove(5, 7, 4, 6);
-    c.PrintBoard();
-    c.MakeMove(4, 6, 3, 5);
-    c.PrintBoard();
-    c.MakeMove(2, 4, 4, 6);
-    c.PrintBoard();
-    c.MakeMove(5, 5, 3, 7);
-    c.PrintBoard();
-    c.MakeMove(3, 0, 4, 1);
-    c.PrintBoard();
+    //c.PrintBoard();
+    //c.MakeMove(5, 7, 4, 6);
+    //c.PrintBoard();
+    //c.MakeMove(4, 6, 3, 5);
+    //c.PrintBoard();
+    //c.MakeMove(2, 4, 4, 6);
+    //c.PrintBoard();
+    ///c.MakeMove(5, 5, 3, 7);
+    //c.PrintBoard();
+    //c.MakeMove(3, 0, 4, 1);
+    //c.PrintBoard();
     /*
     c.PrintBoard();
     c.KingMe();
     c.PrintBoard();*/
     //c.PlayGame();
+    System.out.println(c.IsValidMove(5, 7, 4, 6));
   }
 }//end class

@@ -51,9 +51,10 @@ public class Server
             System.out.println(e.getPoint());
             col = (e.getX() / 10) / 10;
             row = ((e.getY() / 10) - 2) / 10;
-            g.GetCheckers().Click(row, col);
+            //g.GetCheckers().Click(row, col);
             //System.out.println(row);
             //System.out.println(col);
+            click(row, col);
           }
           /*
           System.out.println(e.getPoint());
@@ -79,18 +80,20 @@ public class Server
       
       if(g.GetCheckers().isRedTurn() == false)
       {
-        System.out.println("good");
+        //System.out.println("good");
         
-        if(inFromClient.equals("-1") == false)
+        if(inFromClient.equals("1") == false)
         {
-          System.out.println("bad");
+          //System.out.println("bad");
           row = inFromClient.charAt(0) + "";
-          col = inFromClient.charAt(0) + "";
-         
+          col = inFromClient.charAt(1) + "";
+          
           int x = Integer.parseInt(row);
           int y = Integer.parseInt(col);
-        
+          System.out.println(x + "," + y);
+          
           g.GetCheckers().Click(x, y);
+          
         }
       }
       
@@ -103,5 +106,10 @@ public class Server
       
       frame.repaint();
     }
+  }
+  
+  public static void click(int row, int col)
+  {
+    g.GetCheckers().Click(row, col);
   }
 }
