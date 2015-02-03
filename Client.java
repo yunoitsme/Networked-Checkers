@@ -15,13 +15,13 @@ public class Client
 {
   static coord c = new coord();
   static GBoard g = new GBoard();
+  static int row = 0; 
+  static int col = 0;
   
   public static void main(String args[]) throws Exception
   {
-    //int row = 0; 
-    //int col = 0;
-    boolean canClick = false;
-    boolean sent = true;
+    
+    //boolean canClick = false;
     
     JFrame frame = new JFrame("Checkers");
     
@@ -34,13 +34,12 @@ public class Client
     {
       public void mousePressed(MouseEvent e)
       {
-        int col = (e.getX() / 10) / 10;
-        int row = ((e.getY() / 10) - 2) / 10;
-        //c.Set(((e.getY() / 10) - 2) / 10, (e.getX() / 10) / 10);
-        if(CanClick())
-        {
-          g.GetCheckers().Click(row, col);
-        }
+        col = (e.getX() / 10) / 10;
+        row = ((e.getY() / 10) - 2) / 10;
+        
+        System.out.println(row + ", " + col);
+        
+        c.Set(row, col);
       }
     }
     );
@@ -52,37 +51,24 @@ public class Client
       Socket clientSocket = new Socket("localhost", 6790);
       DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
       BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-      
-      if(g.GetCheckers().isRedTurn() && sent)
+      /////toServer = JOptionPane.showInputDialog("what you gonna do?");
+      /*
+      if(canClick == false)
       {
-        outToServer.writeBytes(/*sentence */"1" + '\n');
-      }
-      if(g.GetCheckers().isRedTurn() && sent == false)
-      {
-        outToServer.writeBytes(g.GetCheckers().GetBoard().toString() + '\n');
-      }
-      if(g.GetCheckers().isRedTurn() == false)
-      {
-        outToServer.writeBytes(/*sentence */"2" + '\n');
-      }
-      
-      boardString = inFromServer.readLine();
-      
-      if(boardString.equals("1"))
-      {
-        
+        outToServer.writeBytes(/*sentence "-1" + '\n');
       }else
       {
-        sent = false;
-        canClick = true;
-        g.SetBoard(DeCodeBoard(boardString));
-        g.GetCheckers().SetBlackTurn();
+        outToServer.writeBytes(c.GetRow() + "" + c.GetCol() + '\n');
       }
+      */
       
-      /*
+      /////JOptionPane.showMessageDialog(null, "it works");
+      
+      /////outToServer.writeBytes(c.GetRow() + "" + c.GetCol() + '\n');
+      
       if(c.GetRow() == -1 && c.GetCol() == -1)
       {
-        outToServer.writeBytes(/*sentence "1" + '\n');
+        outToServer.writeBytes(/*sentence*/ "-1" + '\n');
       }else
       {
         outToServer.writeBytes(c.GetRow() + "" + c.GetCol() + '\n');
@@ -92,17 +78,30 @@ public class Client
       boardString = inFromServer.readLine();
       Thread.sleep(1000);
       
-     
+      /*
+      if(boardString != "1" && boardString != "-1")
+      {
+        g.SetBoard(DeCodeBoard(boardString));
+      }
+      */
       
       g.SetBoard(DeCodeBoard(boardString));
       frame.repaint();
       
-      
-      clientSocket.close();
+      //System.out.println("FROM SERVER: " + boardString);
+      /*
+      if(boardString == "1")
+      {
+        canClick = true;
+      }
+      if(boardString == "-1")
+      {
+        canClick = false;
+      }
+      */
+      //clientSocket.close();
       System.out.print(c.GetRow() + " ");
-      System.out.println(c.GetCol());*/
-      Thread.sleep(1000);
-      frame.repaint();
+      System.out.println(c.GetCol());
     }
   }
   
@@ -120,20 +119,7 @@ public class Client
     }
     return b;
   }
-  
-  public static boolean CanClick()
-  {
-    if(CanClick())
-    {
-      return true;
-    }else
-    {
-      return false;
-    }
-  }
-  
 }
-
 
 class coord
 {

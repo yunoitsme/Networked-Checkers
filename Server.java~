@@ -22,6 +22,7 @@ public class Server
     //boolean isTurn = true;
     String row;
     String col;
+    boolean sent = false;
     
     frame.add(g);
     frame.setSize(801, 823);
@@ -76,8 +77,33 @@ public class Server
       
       inFromClient = in.readLine();
       System.out.println("Received: " + inFromClient);
-
       
+      if(inFromClient.equals("1") || inFromClient.equals("2"))
+      {
+        
+      }else
+      {
+        g.SetBoard(DeCodeBoard(inFromClient));
+      }
+      
+      if(g.GetCheckers().isRedTurn() == false && sent == false)
+      {
+        sent = true;
+        out.writeBytes(g.GetCheckers().GetBoard().toString() + '\n');
+        System.out.println("SENT");
+        sent = true;
+      }
+      if(g.GetCheckers().isRedTurn() == false && sent)
+      {
+        out.writeBytes("1" + '\n');
+      }
+      if(g.GetCheckers().isRedTurn())
+      {
+        out.writeBytes("1" + '\n');
+        //sent = true;
+      }
+
+      /*
       if(g.GetCheckers().isRedTurn() == false)
       {
         //System.out.println("good");
@@ -95,18 +121,34 @@ public class Server
           g.GetCheckers().Click(x, y);
           
         }
-      }
+      }*/
       
       
       //b = DeCodeBoard(inFromClient);
       //b.FillBoard();
       
       //capitalizedSentence = clientSentence.toUpperCase() + '\n';
-      out.writeBytes(g.GetCheckers().GetBoard().toString() + '\n');
+      //out.writeBytes(g.GetCheckers().GetBoard().toString() + '\n');
       
       frame.repaint();
     }
   }
+  
+  public static Board DeCodeBoard(String s)
+  {
+    int z = 0;
+    Board b = new Board();
+    for(int x = 0; x < 8; x++)
+    {
+      for(int y = 0; y < 8; y++)
+      {
+        b.Put(x, y, Integer.parseInt(s.charAt(z) + ""));
+        z++;
+      }
+    }
+    return b;
+  }
+
   
   public static void click(int row, int col)
   {

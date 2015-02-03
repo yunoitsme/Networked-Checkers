@@ -639,8 +639,8 @@ public class Checkers
         if(MakeMove(x, y, row, col))
         {
           RedTurn = true;
-          ResetHighlight();
           MakeMove(x, y, row, col);
+          ResetHighlight();
           System.out.println("test");
         }else
         {
