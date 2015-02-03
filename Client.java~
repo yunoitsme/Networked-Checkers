@@ -18,9 +18,9 @@ public class Client
   
   public static void main(String args[]) throws Exception
   {
-    int row; 
-    int col;
-    boolean canClick = false;
+    //int row = 0; 
+    //int col = 0;
+    //boolean canClick = false;
     
     JFrame frame = new JFrame("Checkers");
     
@@ -48,24 +48,44 @@ public class Client
       DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
       BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
       /////toServer = JOptionPane.showInputDialog("what you gonna do?");
-      
+      /*
       if(canClick == false)
       {
-        outToServer.writeBytes(/*sentence*/ "-1" + '\n');
+        outToServer.writeBytes(/*sentence "-1" + '\n');
       }else
       {
         outToServer.writeBytes(c.GetRow() + "" + c.GetCol() + '\n');
       }
+      */
       
-      Thread.sleep(1000);
+      //JOptionPane.showMessageDialog(null, "it works");
+      
+      //outToServer.writeBytes(c.GetRow() + "" + c.GetCol() + '\n');
+      
+      if(c.GetRow() == -1 && c.GetCol() == -1)
+      {
+        outToServer.writeBytes(/*sentence*/ "1" + '\n');
+      }else
+      {
+        outToServer.writeBytes(c.GetRow() + "" + c.GetCol() + '\n');
+        c.Reset();
+      }
+      
       boardString = inFromServer.readLine();
+      Thread.sleep(1000);
       
+      /*
       if(boardString != "1" && boardString != "-1")
       {
         g.SetBoard(DeCodeBoard(boardString));
       }
+      */
+      
+      g.SetBoard(DeCodeBoard(boardString));
       frame.repaint();
+      
       //System.out.println("FROM SERVER: " + boardString);
+      /*
       if(boardString == "1")
       {
         canClick = true;
@@ -74,6 +94,7 @@ public class Client
       {
         canClick = false;
       }
+      */
       clientSocket.close();
       System.out.print(c.GetRow() + " ");
       System.out.println(c.GetCol());
@@ -98,8 +119,8 @@ public class Client
 
 class coord
 {
-  int row;
-  int col;
+  int row = -1;
+  int col = -1;
   
   public void Set(int r, int c)
   {
@@ -115,5 +136,11 @@ class coord
   public int GetCol()
   {
     return col;
+  }
+  
+  public void Reset()
+  {
+    row = -1;
+    col = -1;
   }
 }

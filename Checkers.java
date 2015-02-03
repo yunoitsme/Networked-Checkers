@@ -63,6 +63,8 @@ public class Checkers
   
   public boolean IsValidMove(int row, int col, int newrow, int newcol)
   {
+    System.out.println(row);
+    System.out.println(col);
     if(b.GetPiece(row, col) == 0)
     {
       return false;
@@ -606,14 +608,16 @@ public class Checkers
         if(b.GetPiece(row , col) == 2 || b.GetPiece(row , col) == 4)
         {
           HighlightSpace(row, col);
+          System.out.println("test1");
         }
       }else
       {
         if(MakeMove(x, y, row, col))
         {
           RedTurn = false;
-          ResetHighlight();
           MakeMove(x, y, row, col);
+          ResetHighlight();
+          System.out.println("test");
         }else
         {
           if(x == row && y == col)
@@ -637,7 +641,7 @@ public class Checkers
           RedTurn = true;
           ResetHighlight();
           MakeMove(x, y, row, col);
-          
+          System.out.println("test");
         }else
         {
           if(x == row && y == col)
@@ -708,6 +712,11 @@ public class Checkers
     return RedTurn;
   }
   
+  public void SetBlackTurn()
+  {
+    RedTurn = false;
+  }
+  
   public static void main(String args[])
   {
     Checkers c = new Checkers();
@@ -728,5 +737,9 @@ public class Checkers
     c.PrintBoard();*/
     //c.PlayGame();
     System.out.println(c.IsValidMove(5, 7, 4, 6));
+    c.Click(2, 0);
+    c.Click(3, 1);
+    c.PrintBoard();
+    
   }
 }//end class

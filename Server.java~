@@ -51,9 +51,10 @@ public class Server
             System.out.println(e.getPoint());
             col = (e.getX() / 10) / 10;
             row = ((e.getY() / 10) - 2) / 10;
-            g.GetCheckers().Click(row, col);
+            //g.GetCheckers().Click(row, col);
             //System.out.println(row);
             //System.out.println(col);
+            click(row, col);
           }
           /*
           System.out.println(e.getPoint());
@@ -92,6 +93,7 @@ public class Server
           System.out.println(x + "," + y);
           
           g.GetCheckers().Click(x, y);
+          
         }
       }
       
@@ -104,5 +106,10 @@ public class Server
       
       frame.repaint();
     }
+  }
+  
+  public static void click(int row, int col)
+  {
+    g.GetCheckers().Click(row, col);
   }
 }

@@ -170,12 +170,12 @@ public class GBoard extends JPanel
           }
         }else
         {
-          //System.out.println(e.getPoint());
+          System.out.println(e.getPoint());
           col = (e.getX() / 10) / 10;
           row = ((e.getY() / 10) - 2) / 10;
           c.Click(row, col);
-          //System.out.println(row);
-          //System.out.println(col);
+          System.out.println(row);
+          System.out.println(col);
         }
       }
     }
