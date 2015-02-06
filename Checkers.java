@@ -717,6 +717,17 @@ public class Checkers
     RedTurn = false;
   }
   
+  public boolean IsHighlighted()
+  {
+    if(x == -1 && y == -1)
+    {
+      return false;
+    }else
+    {
+      return true;
+    }
+  }
+  
   public static void main(String args[])
   {
     Checkers c = new Checkers();

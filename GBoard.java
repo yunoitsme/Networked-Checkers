@@ -24,6 +24,8 @@ public class GBoard extends JPanel
   static final int Xmax = Dimensions + 1;
   static final int Ymax = Dimensions + 23;
   int space = Dimensions / 8;
+  int x = -1;
+  int y = -1;
   
   public GBoard()
   {
@@ -86,6 +88,12 @@ public class GBoard extends JPanel
         b.setColor(Color.yellow);
         b.fillRect((c.GetHCol() * space) + 1, (c.GetHRow() * space) + 1, ((c.GetHCol() + 1 * space) - c.GetHCol()) - 1, ((c.GetHRow() + 1 * space) - c.GetHRow()) - 1);
       }
+      
+      if(x != -1)
+      {
+        b.setColor(Color.yellow);
+        b.fillRect((y * space) + 1, (x * space) + 1, ((y + 1 * space) - y) - 1, ((x + 1 * space) - x) - 1);
+      }
     
       //draws pieces
       for(int row = 0; row < 8; row++)
@@ -144,6 +152,27 @@ public class GBoard extends JPanel
   public void SetBoard(Board b)
   {
     c = new Checkers(b);
+  }
+  
+  public void SetHighlight(int row, int col)
+  {
+    x = row;
+    y = col;
+  }
+  
+  public void Reset()
+  {
+    x = -1;
+    y = -1;
+  }
+  
+  public boolean IsHighlighted()
+  {
+    if(x == -1)
+    {
+      return false;
+    }
+    return true;
   }
   
   public static void main(String[] args) throws InterruptedException

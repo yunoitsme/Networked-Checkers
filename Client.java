@@ -38,8 +38,18 @@ public class Client
         row = ((e.getY() / 10) - 2) / 10;
         
         System.out.println(row + ", " + col);
+        //g.SetHighlight(row, col);
+        
+        if(g.IsHighlighted())
+        {
+          g.Reset();
+        }else
+        {
+          g.SetHighlight(row, col);
+        }
         
         c.Set(row, col);
+        
       }
     }
     );

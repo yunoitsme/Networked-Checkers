@@ -1,3 +1,4 @@
+//know when its your turn 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -76,6 +77,7 @@ public class Server
       inFromClient = in.readLine();
       System.out.println("Received: " + inFromClient);
 
+      g.GetCheckers().KingMe();
       
       if(g.GetCheckers().isRedTurn() == false)
       {
