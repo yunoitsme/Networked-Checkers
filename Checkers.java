@@ -717,6 +717,11 @@ public class Checkers
     RedTurn = false;
   }
   
+  public void SetRedTurn()
+  {
+    RedTurn = true;
+  }
+  
   public boolean IsHighlighted()
   {
     if(x == -1 && y == -1)
@@ -726,6 +731,11 @@ public class Checkers
     {
       return true;
     }
+  }
+  
+  public void SetBoard(Board board)
+  {
+    b = board;
   }
   
   public static void main(String args[])

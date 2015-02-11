@@ -39,6 +39,15 @@ public class Client
         
         System.out.println(row + ", " + col);
         g.GetCheckers().Click(row, col);
+        
+        if(g.IsHighlighted())
+        {
+          g.Reset();
+        }else
+        {
+          g.SetHighlight(row, col);
+        }
+        
         c.Set(row, col);
         
       }

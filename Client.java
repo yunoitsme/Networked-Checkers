@@ -38,7 +38,7 @@ public class Client
         row = ((e.getY() / 10) - 2) / 10;
         
         System.out.println(row + ", " + col);
-        //g.SetHighlight(row, col);
+        //g.GetCheckers().Click(row, col);
         
         if(g.IsHighlighted())
         {
@@ -86,7 +86,7 @@ public class Client
       }
       
       boardString = inFromServer.readLine();
-      Thread.sleep(1000);
+      Thread.sleep(10);
       
       /*
       if(boardString != "1" && boardString != "-1")
@@ -95,7 +95,20 @@ public class Client
       }
       */
       
-      g.SetBoard(DeCodeBoard(boardString));
+      if(boardString.equals("-1"))
+      {
+        g.GetCheckers().SetBlackTurn();
+      }
+      if(boardString.equals("1"))
+      {
+        g.GetCheckers().SetRedTurn();
+      }
+      if(boardString.equals("1") == false && boardString.equals("-1") == false)
+      {
+        g.SetBoard(DeCodeBoard(boardString));
+      }
+      
+      
       frame.repaint();
       
       //System.out.println("FROM SERVER: " + boardString);

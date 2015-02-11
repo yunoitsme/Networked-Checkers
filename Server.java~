@@ -1,5 +1,4 @@
 //know when its your turn 
-//client highlights pices
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;

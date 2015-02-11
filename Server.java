@@ -23,6 +23,8 @@ public class Server
     //boolean isTurn = true;
     String row;
     String col;
+    boolean sent = false;
+    
     
     frame.add(g);
     frame.setSize(801, 823);
@@ -103,7 +105,30 @@ public class Server
       //b.FillBoard();
       
       //capitalizedSentence = clientSentence.toUpperCase() + '\n';
-      out.writeBytes(g.GetCheckers().GetBoard().toString() + '\n');
+      
+      if(g.GetCheckers().RedTurn)
+      {
+        if(sent == true)
+        {
+          out.writeBytes("1" + '\n');
+          sent = false;
+        }else
+        {
+          out.writeBytes(g.GetCheckers().GetBoard().toString() + '\n');
+        }
+      }else
+      {
+        if(sent == false)
+        {
+          out.writeBytes("-1" + '\n');
+          sent = true;
+        }else
+        {
+          out.writeBytes(g.GetCheckers().GetBoard().toString() + '\n');
+        }
+      }
+      
+      
       
       frame.repaint();
     }

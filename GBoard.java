@@ -81,6 +81,34 @@ public class GBoard extends JPanel
         int y = (Dimensions / 8) * n;
         b.drawLine(0, y, Dimensions, y);
       }
+      
+      if(c.isRedTurn())
+      {
+        for(int row = 0; row < 8; row++)
+        {
+          for(int col = 0; col < 8; col++)
+          {
+            if(c.GetPiece(row, col) == 2 || c.GetPiece(row, col) == 4)
+            {
+              b.setColor(Color.green);
+              b.fillRect((col * space) + 1, (row * space) + 1, ((col + 1 * space) - col) - 1, ((row + 1 * space) - row) - 1);
+            }
+          }
+        }
+      }else
+      {
+        for(int row = 0; row < 8; row++)
+        {
+          for(int col = 0; col < 8; col++)
+          {
+            if(c.GetPiece(row, col) == 1 || c.GetPiece(row, col) == 3)
+            {
+              b.setColor(Color.green);
+              b.fillRect((col * space) + 1, (row * space) + 1, ((col + 1 * space) - col) - 1, ((row + 1 * space) - row) - 1);
+            }
+          }
+        }
+      }
     
       //highlight selected piece
       if(c.GetHighlightedSpace())
@@ -151,7 +179,7 @@ public class GBoard extends JPanel
   
   public void SetBoard(Board b)
   {
-    c = new Checkers(b);
+    c.SetBoard(b);
   }
   
   public void SetHighlight(int row, int col)
